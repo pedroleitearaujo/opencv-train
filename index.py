@@ -47,10 +47,10 @@ while True:
     for key, value in upper.items():
         kernel = np.ones((9, 9), np.uint8)
         mask = cv2.inRange(hsv, lower[key], upper[key])
-        # Suavização pela Gaussiana para gerar menos borrão na imagem e reduzir o ruido
+        # Suavização pela Gaussiana para reduzir o ruido
         mask = cv2.GaussianBlur(mask, (5, 5), 0)
         
-		# morfológica para remover mais ruido
+		# morfológica para aumentar o constrate e encontrar mais facilmente o objeto
         mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
         mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
         
